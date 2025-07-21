@@ -3,82 +3,122 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daily GenZ Words</title>
+  <title>Daily Gen Z Words</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f9f9f9;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff5f6d, #ffc371);
       color: #333;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
     }
+
     .container {
-      background: #fff;
+      background: white;
       padding: 2rem 3rem;
-      border-radius: 1rem;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-      max-width: 420px;
-      text-align: center;
-    }
-    h1 {
-      color: #111;
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
-    p {
-      font-size: 1rem;
-      margin-bottom: 2rem;
-      color: #666;
-    }
-    input {
-      padding: 0.8rem;
+      border-radius: 1.2rem;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+      max-width: 450px;
       width: 100%;
-      border: 1px solid #ccc;
-      border-radius: 0.5rem;
-      margin-bottom: 1rem;
+      text-align: center;
+      animation: fadeIn 1s ease;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #222;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+      color: #555;
+    }
+
+    input {
+      padding: 0.9rem;
+      width: 100%;
+      border: 2px solid #eee;
+      border-radius: 0.7rem;
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #ff5f6d;
+      box-shadow: 0 0 0 3px rgba(255, 95, 109, 0.2);
+    }
+
     button {
-      padding: 0.8rem 1.2rem;
-      background: #4caf50;
+      padding: 0.9rem 1.5rem;
+      background: linear-gradient(to right, #ff5f6d, #ffc371);
       color: white;
+      font-weight: bold;
       border: none;
-      border-radius: 0.5rem;
+      border-radius: 3rem;
       cursor: pointer;
       font-size: 1rem;
+      transition: transform 0.2s ease;
     }
+
     button:hover {
-      background: #45a049;
+      transform: scale(1.05);
     }
+
     .note {
-      margin-top: 1rem;
-      font-size: 0.85rem;
-      color: #888;
+      margin-top: 1.2rem;
+      font-size: 0.9rem;
+      color: #666;
     }
+
     #thankyou-message {
       display: none;
       margin-top: 2rem;
-      color: #4caf50;
-      font-weight: bold;
+      color: #27ae60;
+      font-size: 1.2rem;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .note:last-child {
+      font-size: 0.85rem;
+      font-style: italic;
+      margin-top: 0.4rem;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Get Daily Gen Z Words</h1>
-    <p>Join thousands who receive a fun word every morning 💌</p>
+    <h1>Slang Circuit</h1>
+    <p>Get plugged into the daily loop of Gen Z & Alpha lingo to stay in the loop. 💌</p>
 
     <!-- Form -->
     <form id="genz-form">
       <input type="text"
              name="entry.964988767"
-             placeholder="Enter your name"
+             placeholder="👤 Your name"
              required />
       <input type="email"
              name="entry.573731903"
-             placeholder="Enter your email"
+             placeholder="📧 Your email address"
              required />
       <button type="submit">Get Started</button>
     </form>
@@ -86,11 +126,10 @@
     <!-- Thank You Message -->
     <div id="thankyou-message"></div>
 
-    <div class="note">No spam, just good vibes. Unsubscribe anytime.</div>
-    <div class="note">Powered by AM</div>
+    <div class="note">No cringe. No spam. Unsubscribe anytime.</div>
+    <div class="note">Powered by <strong>AM</strong></div>
   </div>
 
-  <!-- JavaScript to handle form submission and show custom message -->
   <script>
     document.getElementById('genz-form').addEventListener('submit', async function(e) {
       e.preventDefault();
@@ -99,7 +138,7 @@
       const formData = new FormData(form);
 
       try {
-        // Submit the form to Google Forms in background
+        // Submit form data to Google Forms
         await fetch('https://docs.google.com/forms/d/e/1FAIpQLScLvsNE88giBKX4AS-t21aq2yvDMUK2NC8tFTmCcQXnrMZnBA/formResponse', {
           method: 'POST',
           mode: 'no-cors',
@@ -109,7 +148,7 @@
         // Hide the form
         form.style.display = 'none';
 
-        // Show thank you message with current date/time
+        // Format current IST time
         const now = new Date();
         const options = {
           timeZone: 'Asia/Kolkata',
@@ -124,12 +163,13 @@
         };
         const dateString = now.toLocaleString('en-IN', options);
 
-        document.getElementById('thankyou-message').style.display = 'block';
-        document.getElementById('thankyou-message').innerHTML =
-          `✅ <strong>Thanks for participating!</strong><br>🕒 Submitted on: ${dateString} IST`;
-
+        // Show thank you message
+        const thankYouMsg = document.getElementById('thankyou-message');
+        thankYouMsg.style.display = 'block';
+        thankYouMsg.innerHTML =
+          `✅ <strong>Thanks for signing up!</strong><br>📅 You're in!</em>`;
       } catch (err) {
-        alert('Oops! Something went wrong. Please try again later.');
+        alert("Oops! Something went wrong. Please try again later.");
         console.error(err);
       }
     });
