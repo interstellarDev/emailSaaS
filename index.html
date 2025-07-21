@@ -57,34 +57,82 @@
       font-size: 0.85rem;
       color: #888;
     }
+    #thankyou-message {
+      display: none;
+      margin-top: 2rem;
+      color: #4caf50;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Get Daily Gen Z Words</h1>
     <p>Join thousands who receive a fun word every morning 💌</p>
-    
-    <!-- Replace the form ID and entry IDs with actual values -->
-    <form action="https://docs.google.com/forms/d/e/1FAIpQLScIjLuvrmAVNMQQ_onqr2e7LhWN3ENHecwZoyhNoh96f-dXkQ/formResponse"
-          method="POST"
-          target="_blank">
-      
-      <!-- Name Field -->
+
+    <!-- Form -->
+    <form id="genz-form">
       <input type="text"
              name="entry.1423631773"
              placeholder="Enter your name"
              required />
-             
-      <!-- Email Field -->
       <input type="email"
              name="entry.1265193517"
              placeholder="Enter your email"
              required />
-
-      <button type="submit">Subscribe</button>
+      <button type="submit">Get Started</button>
     </form>
-    
+
+    <!-- Thank You Message -->
+    <div id="thankyou-message"></div>
+
     <div class="note">No spam, just good vibes. Unsubscribe anytime.</div>
+    <div class="note">Powered by AM</div>
   </div>
+
+  <!-- JavaScript to handle form submission and show custom message -->
+  <script>
+    document.getElementById('genz-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const formData = new FormData(form);
+
+      try {
+        // Submit the form to Google Forms in background
+        await fetch('https://docs.google.com/forms/d/e/1FAIpQLScIjLuvrmAVNMQQ_onqr2e7LhWN3ENHecwZoyhNoh96f-dXkQ/formResponse', {
+          method: 'POST',
+          mode: 'no-cors',
+          body: formData
+        });
+
+        // Hide the form
+        form.style.display = 'none';
+
+        // Show thank you message with current date/time
+        const now = new Date();
+        const options = {
+          timeZone: 'Asia/Kolkata',
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true
+        };
+        const dateString = now.toLocaleString('en-IN', options);
+
+        document.getElementById('thankyou-message').style.display = 'block';
+        document.getElementById('thankyou-message').innerHTML =
+          `✅ <strong>Thanks for participating!</strong><br>🕒 Submitted on: ${dateString} IST`;
+
+      } catch (err) {
+        alert('Oops! Something went wrong. Please try again later.');
+        console.error(err);
+      }
+    });
+  </script>
 </body>
 </html>
