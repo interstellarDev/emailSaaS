@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily GenZ Words</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #fff;
+      padding: 2rem 3rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      max-width: 420px;
+      text-align: center;
+    }
+    h1 {
+      color: #111;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      color: #666;
+    }
+    input[type="email"] {
+      padding: 0.8rem;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    button {
+      padding: 0.8rem 1.2rem;
+      background: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    .note {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Get Daily Gen Z Words</h1>
+    <p>Join thousands who receive a fun word every morning 💌</p>
+    <form action="https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/formResponse" method="POST" target="_blank">
+      <input type="email" name="entry.YOUR_EMAIL_ENTRY_ID" placeholder="Enter your email" required />
+      <button type="submit">Subscribe</button>
+    </form>
+    <div class="note">No spam, just good vibes. Unsubscribe anytime.</div>
+  </div>
+</body>
+</html>
