@@ -33,7 +33,7 @@
       margin-bottom: 2rem;
       color: #666;
     }
-    input[type="email"] {
+    input {
       padding: 0.8rem;
       width: 100%;
       border: 1px solid #ccc;
@@ -63,10 +63,27 @@
   <div class="container">
     <h1>Get Daily Gen Z Words</h1>
     <p>Join thousands who receive a fun word every morning 💌</p>
-    <form action="https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/formResponse" method="POST" target="_blank">
-      <input type="email" name="entry.YOUR_EMAIL_ENTRY_ID" placeholder="Enter your email" required />
+    
+    <!-- Replace the form ID and entry IDs with actual values -->
+    <form action="https://docs.google.com/forms/d/e/1FAIpQLScIjLuvrmAVNMQQ_onqr2e7LhWN3ENHecwZoyhNoh96f-dXkQ/formResponse"
+          method="POST"
+          target="_blank">
+      
+      <!-- Name Field -->
+      <input type="text"
+             name="entry.1423631773"
+             placeholder="Enter your name"
+             required />
+             
+      <!-- Email Field -->
+      <input type="email"
+             name="entry.1265193517"
+             placeholder="Enter your email"
+             required />
+
       <button type="submit">Subscribe</button>
     </form>
+    
     <div class="note">No spam, just good vibes. Unsubscribe anytime.</div>
   </div>
 </body>
